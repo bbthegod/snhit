@@ -153,6 +153,7 @@ export class PlayComponent implements OnInit {
     this.selectedQuestion.answered = true;
     this.fullPlay.data.time = this.time;
     this.fullPlay.comand = 1000;
+    console.log(this.fullPlay);
     this.socket.emitAnswer(this.fullPlay);
     this.socket.onQuestion().subscribe((result) => {
       if (result.data.status == 0 || result.data.status == 1) {

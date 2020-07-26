@@ -1,8 +1,8 @@
 <mat-card *ngIf="!status" class="time-out">
   <h2>Hết giờ</h2>
   <h3>
-    Bạn đã hoàn thành xong phần thi IQ và EQ của mình. Cảm ơn bạn đã tham gia thi tuyển thành viên của câu lạc bộ Tin
-    học HIT
+    Bạn đã hoàn thành xong phần thi của mình, cảm ơn bạn đã tham gia sự kiện sinh nhật 10 năm của HIT, Happy Birday to
+    HIT ❤
   </h3>
 </mat-card>
 <div class="row wrapper" *ngIf="status">
@@ -61,65 +61,6 @@
           <div class="col-6">
             <div class="direction-right">
               <button [disabled]="setButton() === 2" (click)="Next()" mat-raised-button class="direction-button">
-                Sau
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </mat-card>
-  </div>
-
-  <!-- ========================================================= -->
-
-  <div class="col-xs-3 col-sm-3 col-md-9 col-lg-9" *ngIf="!isQuestion">
-    <mat-card class="display-card">
-      <div class="timer">
-        <span class="timer-text">{{ timeDis.minute }} : {{ timeDis.seconds }}</span>
-      </div>
-      <div *ngIf="selectedProblem" class="question">
-        <h3 class="question-content">{{ selectedProblem.problemId.content }}</h3>
-        <div class="row">
-          <div class="col-md-6 in-out">
-            <p>Input</p>
-            <div class="in-out-box">
-              <pre>{{ selectedProblem.problemId.input }}</pre>
-            </div>
-          </div>
-          <div class="col-md-6 in-out">
-            <p>Output</p>
-            <div class="in-out-box">
-              <pre>{{ selectedProblem.problemId.output }}</pre>
-            </div>
-          </div>
-        </div>
-        <div class="uploader-box">
-          <p>Chỉ tải lên file main.cpp, main.c, main.py... Không tải lên cả project</p>
-          <input type="file" class="uploader" accept=".cpp,.c,.py," />
-          <br />
-          <button mat-raised-button class="submit-button">Gửi đi</button>
-        </div>
-        <div class="row direction">
-          <div class="col-6">
-            <div class="direction-left">
-              <button
-                [disabled]="setProblemButton() === 1"
-                (click)="LastProblem()"
-                mat-raised-button
-                class="direction-button"
-              >
-                Trước
-              </button>
-            </div>
-          </div>
-          <div class="col-6">
-            <div class="direction-right">
-              <button
-                [disabled]="setProblemButton() === 2"
-                (click)="NextProblem()"
-                mat-raised-button
-                class="direction-button"
-              >
                 Sau
               </button>
             </div>
