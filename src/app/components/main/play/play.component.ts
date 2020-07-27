@@ -149,21 +149,19 @@ export class PlayComponent implements OnInit {
   }
   //Chọn câu trả lời
   SelectAns(event) {
-    this.selectedQuestion.answer = event.target.innerText;
-    this.selectedQuestion.answered = true;
+    this.fullPlay.data.history.questions[this.selectIndex].answer = this.selectedQuestion.answer =
+      event.target.innerText;
+    this.fullPlay.data.history.questions[this.selectIndex].answered = this.selectedQuestion.answered = true;
     this.fullPlay.data.time = this.time;
     this.fullPlay.comand = 1000;
-    console.log(this.fullPlay);
     this.socket.emitAnswer(this.fullPlay);
     this.socket.onQuestion().subscribe((result) => {
       if (result.data.status == 0 || result.data.status == 1) {
         this.fullPlay = result;
         this.time = result.data.time;
         this.listQ = result.data.history.questions;
-        // this.selectedQuestion = result.data.history.questions[0];
         this.listP = result.data.history.problems;
         this.status = true;
-        // this.run();
       } else {
         this.status = false;
       }
