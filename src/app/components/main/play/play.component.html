@@ -1,0 +1,72 @@
+<mat-card *ngIf="!status" class="time-out">
+  <h2>Hết giờ</h2>
+  <h3>
+    Bạn đã hoàn thành xong phần thi của mình, cảm ơn bạn đã tham gia sự kiện sinh nhật 10 năm của HIT, Happy Birday to
+    HIT ❤
+  </h3>
+</mat-card>
+<div class="row wrapper" *ngIf="status">
+  <div class="scollbar" class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Trắc nghiệm
+          </mat-panel-title>
+          <mat-panel-description>
+            Bài kiểm tra EQ,IQ
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-nav-list>
+          <mat-list-item
+            *ngFor="let item of listQ; let i = index"
+            [class.selected]="item === selectedQuestion"
+            [style.background-color]="item.answered && item !== selectedQuestion ? '#FF7043' : ''"
+            (click)="onSelect(item, i); isQuestion = true"
+          >
+            <button mat-icon-button style="margin-right: 10px;">Câu {{ i + 1 }} :</button>
+            <span>{{ item.questionId.content | slice: 0:35 }}</span>
+          </mat-list-item>
+        </mat-nav-list>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+  <div class="col-xs-3 col-sm-3 col-md-9 col-lg-9" *ngIf="isQuestion">
+    <mat-card class="display-card">
+      <div class="timer">
+        <span class="timer-text">{{ timeDis.minute }} : {{ timeDis.seconds }}</span>
+      </div>
+      <div *ngIf="selectedQuestion" class="question">
+        <h3 class="question-content">{{ selectedQuestion.questionId.content }}</h3>
+        <div class="row">
+          <div class="col-md-6 question-item" *ngFor="let item of selectedQuestion.questionId.options">
+            <button
+              class="answer"
+              mat-raised-button
+              [style.background-color]="item.answer == selectedQuestion.answer ? '#42a5f5' : '#FF7043'"
+              (click)="SelectAns($event)"
+            >
+              {{ item.answer }}
+            </button>
+          </div>
+        </div>
+        <div class="row direction">
+          <div class="col-6">
+            <div class="direction-left">
+              <button [disabled]="setButton() === 1" (click)="Last()" mat-raised-button class="direction-button">
+                Trước
+              </button>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="direction-right">
+              <button [disabled]="setButton() === 2" (click)="Next()" mat-raised-button class="direction-button">
+                Sau
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="wrapper">
+  <div class="box">
+    <div class="headerBox">
+      <h3 class="headerText">Nhập mã xác nhận của bạn</h3>
+    </div>
+    <div class="bodyBox">
+      <form [formGroup]="formActive" (submit)="Active()">
+        <span class="text">Mã xác nhận đã được gửi đến địa chỉ {{ hash.email }}</span>
+        <span class="resend"
+          >Chưa nhận được email xác nhận ?
+          <span style="color: #ff7043; cursor: pointer;" (click)="Resend()">Gửi lại</span></span
+        >
+        <input placeholder="Mã xác nhận" formControlName="code" class="input" required />
+        <button mat-raised-button class="submit-button" type="submit">
+          Xác nhận
+        </button>
+      </form>
+      <form [formGroup]="formChangEmail" (submit)="ChangEmail()" style="margin-top: 15px;">
+        <span class="change-email" (click)="Toggle()">Click vào đây để thay đổi email</span>
+        <input placeholder="Email mới" formControlName="email" class="input" required *ngIf="changeEmail" />
+        <button mat-raised-button class="submit-button" *ngIf="changeEmail" type="submit">
+          Thay đổi
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
